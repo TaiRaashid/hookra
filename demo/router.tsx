@@ -14,6 +14,7 @@ import { Features } from './components/Features'
 import { GetStarted } from './components/GetStarted'
 import { Examples } from './components/Examples'
 import { ApiReference } from './components/ApiReference'
+import { Playground } from './components/Playground'
 
 // ─── Search params type ──────────────────────────────────────────────────────
 
@@ -53,7 +54,10 @@ const getStartedRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/get-started',
   beforeLoad: () => {
-    throw redirect({ to: '/get-started/$section', params: { section: 'installation' } })
+    throw redirect({
+      to: '/get-started/$section',
+      params: { section: 'installation' },
+    })
   },
 })
 
@@ -64,6 +68,12 @@ const getStartedSectionRoute = createRoute({
     const { section } = getStartedSectionRoute.useParams()
     return <GetStarted section={section} />
   },
+})
+
+const playgroundRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/playground',
+  component: Playground,
 })
 
 const examplesRoute = createRoute({
@@ -82,7 +92,10 @@ const apiRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/api',
   beforeLoad: () => {
-    throw redirect({ to: '/api/$section', params: { section: 'formbuilder' } })
+    throw redirect({
+      to: '/api/$section',
+      params: { section: 'formbuilder' },
+    })
   },
 })
 
@@ -101,6 +114,7 @@ const routeTree = rootRoute.addChildren([
   homeRoute,
   getStartedRoute,
   getStartedSectionRoute,
+  playgroundRoute,
   examplesRoute,
   apiRoute,
   apiSectionRoute,
