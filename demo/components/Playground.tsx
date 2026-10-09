@@ -4,6 +4,7 @@ import {
   Button,
   Flex,
   Heading,
+  NativeSelect,
   Text,
   Textarea,
   VStack,
@@ -207,31 +208,22 @@ export function Playground() {
               <Text fontWeight="600">Schema Editor</Text>
 
               <Flex gap="2" align="center" flexWrap="wrap">
-                <select
-                  aria-label="Choose an example schema"
-                  value={selectedExampleId}
-                  onChange={(event) => handleExampleChange(event.target.value)}
-                  style={{
-                    maxWidth: '220px',
-                    minWidth: 0,
-                    padding: '6px 10px',
-                    border: `1px solid var(--chakra-colors-${colorMode === 'dark' ? 'gray-700' : 'gray-200'})`,
-                    borderRadius: '6px',
-                    background: colorMode === 'dark' ? '#1A202C' : '#FFFFFF',
-                    color: 'inherit',
-                    fontSize: '14px',
-                  }}
-                >
-                  {!initialExample && (
-                    <option value="starter">Starter Form</option>
-                  )}
-
-                  {playgroundExamples.map((example) => (
-                    <option key={example.id} value={example.id}>
-                      {example.title}
-                    </option>
-                  ))}
-                </select>
+                <NativeSelect.Root maxW="220px" size="sm">
+  <NativeSelect.Field
+    aria-label="Choose an example schema"
+    value={selectedExampleId}
+    onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
+      handleExampleChange(event.target.value)
+    }
+  >
+    {!initialExample && <option value="starter">Starter Form</option>}
+    {playgroundExamples.map((example) => (
+      <option key={example.id} value={example.id}>
+        {example.title}
+      </option>
+    ))}
+  </NativeSelect.Field>
+</NativeSelect.Root>
 
                 <Button
                   size="sm"
