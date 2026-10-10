@@ -29,53 +29,18 @@ const staticNavigation: NavGroup[] = [
   {
     title: 'Getting Started',
     items: [
-      {
-        id: 'installation',
-        to: '/get-started/$section',
-        params: { section: 'installation' },
-        label: 'Installation',
-      },
-      {
-        id: 'quick-start',
-        to: '/get-started/$section',
-        params: { section: 'quick-start' },
-        label: 'Quick Start',
-      },
-      {
-        id: 'basic-schema',
-        to: '/get-started/$section',
-        params: { section: 'basic-schema' },
-        label: 'Basic Schema',
-      },
-      {
-        id: 'layout',
-        to: '/get-started/$section',
-        params: { section: 'layout' },
-        label: 'Layout & Columns',
-      },
-      {
-        id: 'conditions',
-        to: '/get-started/$section',
-        params: { section: 'conditions' },
-        label: 'Conditional Fields',
-      },
-      {
-        id: 'custom',
-        to: '/get-started/$section',
-        params: { section: 'custom' },
-        label: 'Custom Components',
-      },
+      { id: 'installation', to: '/get-started/$section', params: { section: 'installation' }, label: 'Installation' },
+      { id: 'quick-start', to: '/get-started/$section', params: { section: 'quick-start' }, label: 'Quick Start' },
+      { id: 'basic-schema', to: '/get-started/$section', params: { section: 'basic-schema' }, label: 'Basic Schema' },
+      { id: 'layout', to: '/get-started/$section', params: { section: 'layout' }, label: 'Layout & Columns' },
+      { id: 'conditions', to: '/get-started/$section', params: { section: 'conditions' }, label: 'Conditional Fields' },
+      { id: 'custom', to: '/get-started/$section', params: { section: 'custom' }, label: 'Custom Components' },
     ],
   },
   {
     title: 'Playground',
     items: [
-      {
-        id: 'playground',
-        to: '/playground',
-        label: 'Interactive Playground',
-        isNew: true,
-      },
+      { id: 'playground', to: '/playground', label: 'Interactive Playground', isNew: true },
     ],
   },
 ]
@@ -93,49 +58,13 @@ const exampleNavGroups: NavGroup[] = exampleCategories.map((cat) => ({
 const apiNavigation: NavGroup = {
   title: 'API Reference',
   items: [
-    {
-      id: 'api-formbuilder',
-      to: '/api/$section',
-      params: { section: 'formbuilder' },
-      label: 'FormBuilder',
-    },
-    {
-      id: 'api-schema',
-      to: '/api/$section',
-      params: { section: 'schema' },
-      label: 'FormSchema',
-    },
-    {
-      id: 'api-fields',
-      to: '/api/$section',
-      params: { section: 'fields' },
-      label: 'Field Types',
-    },
-    {
-      id: 'api-conditions',
-      to: '/api/$section',
-      params: { section: 'conditions' },
-      label: 'Conditions',
-    },
-    {
-      id: 'api-validation',
-      to: '/api/$section',
-      params: { section: 'validation' },
-      label: 'Validation',
-    },
-    {
-      id: 'api-registry',
-      to: '/api/$section',
-      params: { section: 'registry' },
-      label: 'Registry',
-    },
-    {
-      id: 'api-fillfrom',
-      to: '/api/$section',
-      params: { section: 'fillfrom' },
-      label: 'fillFrom & onFill',
-      isNew: true,
-    },
+    { id: 'api-formbuilder', to: '/api/$section', params: { section: 'formbuilder' }, label: 'FormBuilder' },
+    { id: 'api-schema', to: '/api/$section', params: { section: 'schema' }, label: 'FormSchema' },
+    { id: 'api-fields', to: '/api/$section', params: { section: 'fields' }, label: 'Field Types' },
+    { id: 'api-conditions', to: '/api/$section', params: { section: 'conditions' }, label: 'Conditions' },
+    { id: 'api-validation', to: '/api/$section', params: { section: 'validation' }, label: 'Validation' },
+    { id: 'api-registry', to: '/api/$section', params: { section: 'registry' }, label: 'Registry' },
+    { id: 'api-fillfrom', to: '/api/$section', params: { section: 'fillfrom' }, label: 'fillFrom & onFill', isNew: true },
   ],
 }
 

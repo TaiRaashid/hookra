@@ -209,22 +209,21 @@ export function Playground() {
 
               <Flex gap="2" align="center" flexWrap="wrap">
                 <NativeSelect.Root maxW="220px" size="sm">
-  <NativeSelect.Field
-    aria-label="Choose an example schema"
-    value={selectedExampleId}
-    onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
-      handleExampleChange(event.target.value)
-    }
-  >
-    {!initialExample && <option value="starter">Starter Form</option>}
-    {playgroundExamples.map((example) => (
-      <option key={example.id} value={example.id}>
-        {example.title}
-      </option>
-    ))}
-  </NativeSelect.Field>
-</NativeSelect.Root>
-
+                  <NativeSelect.Field
+                    aria-label="Choose an example schema"
+                    value={selectedExampleId}
+                    onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
+                      handleExampleChange(event.target.value)
+                    }
+                  >
+                    {!initialExample && <option value="starter">Starter Form</option>}
+                    {playgroundExamples.map((example) => (
+                      <option key={example.id} value={example.id}>
+                        {example.title}
+                      </option>
+                    ))}
+                  </NativeSelect.Field>
+                </NativeSelect.Root>
                 <Button
                   size="sm"
                   variant="outline"
