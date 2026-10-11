@@ -13,6 +13,7 @@ import { FormBuilder, type FormSchema } from 'hookra'
 import { allExamples, type ExampleDef } from '../data/examples'
 import { useColorMode } from '../color-mode'
 import { CodeBlock } from './CodeBlock'
+import { validateSchema } from '../utils/validateSchema'
 
 const starterSchema: FormSchema = {
   title: 'Interactive Form',
@@ -109,25 +110,13 @@ export function Playground() {
 
     try {
       const parsed: unknown = JSON.parse(value)
+      const validationError = validateSchema(parsed)
 
-      if (
-        parsed === null ||
-        typeof parsed !== 'object' ||
-        Array.isArray(parsed)
-      ) {
-        throw new Error('Schema must be a JSON object.')
+      if (validationError) {
+        throw new Error(validationError)
       }
 
       const parsedSchema = parsed as FormSchema
-
-      if (
-        !Array.isArray(parsedSchema.fields) &&
-        !Array.isArray(parsedSchema.sections)
-      ) {
-        throw new Error(
-          'Schema must contain either "fields" or "sections".',
-        )
-      }
 
       setSchema(parsedSchema)
       setParseError(null)
