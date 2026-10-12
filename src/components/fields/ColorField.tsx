@@ -1,4 +1,5 @@
 import {
+  parseColor,
   HStack,
   Input,
   ColorPickerRoot,
@@ -35,15 +36,21 @@ export function ColorField({ field, name, readOnly }: Props) {
   const variant = field.variant ?? 'native'
 
   const { field: controllerField } = useController({ name, rules })
-
+    
   if (variant === 'chakra') {
+    const colorValue = parseColor(
+      typeof currentValue === 'string' && currentValue.trim()
+        ? currentValue
+        : '#000000',
+    )
+
     const handleValueChange = (details: ColorPickerValueChangeDetails) => {
       controllerField.onChange(details.valueAsString)
     }
 
     return (
       <ColorPickerRoot
-        value={currentValue}
+        value={colorValue}
         onValueChange={handleValueChange}
         disabled={field.disabled}
         readOnly={isReadOnly}
