@@ -95,6 +95,10 @@ export function Playground() {
   const [submittedData, setSubmittedData] =
     useState<Record<string, unknown> | null>(null)
 
+  const selectedExample = playgroundExamples.find(
+    (example) => example.id === selectedExampleId,
+  )
+
   const editorBg = colorMode === 'dark' ? 'gray.900' : 'gray.50'
   const panelBg = colorMode === 'dark' ? 'gray.800' : 'white'
   const borderColor = colorMode === 'dark' ? 'gray.700' : 'gray.200'
@@ -303,6 +307,9 @@ export function Playground() {
             <Box p={{ base: 4, md: 6 }}>
               <FormBuilder
                 schema={schema}
+                readOnly={selectedExample?.readOnly}
+                onlyDirty={selectedExample?.onlyDirty}
+                onFill={selectedExample?.onFill}
                 onSubmit={(data) => setSubmittedData(data)}
               />
             </Box>
