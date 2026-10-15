@@ -6,7 +6,6 @@ import {
   Heading,
   NativeSelect,
   Text,
-  Textarea,
   VStack,
 } from '@chakra-ui/react'
 import { FormBuilder, type FormSchema } from 'hookra'
@@ -14,6 +13,10 @@ import { allExamples, type ExampleDef } from '../data/examples'
 import { useColorMode } from '../color-mode'
 import { CodeBlock } from './CodeBlock'
 import { validateSchema } from '../utils/validateSchema'
+import CodeMirror from '@uiw/react-codemirror'
+import { json } from '@codemirror/lang-json'
+import { indentWithTab } from '@codemirror/commands'
+import { keymap } from '@codemirror/view'
 
 const starterSchema: FormSchema = {
   title: 'Interactive Form',
@@ -99,7 +102,9 @@ export function Playground() {
   const panelBg = colorMode === 'dark' ? 'gray.800' : 'white'
   const borderColor = colorMode === 'dark' ? 'gray.700' : 'gray.200'
   const mutedColor = colorMode === 'dark' ? 'gray.400' : 'gray.600'
-
+  const selectedExample = playgroundExamples.find(
+    (example) => example.id === selectedExampleId,
+  )
   const formattedSchema = useMemo(
     () => JSON.stringify(schema, null, 2),
     [schema],
@@ -239,20 +244,23 @@ export function Playground() {
             )}
 
             <Box p="4">
-              <Textarea
-                aria-label="Form schema JSON editor"
+              <CodeMirror
                 value={schemaText}
-                onChange={(event) =>
-                  handleSchemaChange(event.target.value)
-                }
-                minH="520px"
-                resize="vertical"
-                fontFamily="mono"
-                fontSize="sm"
-                lineHeight="1.6"
-                bg={colorMode === 'dark' ? 'gray.950' : 'white'}
-                borderColor={parseError ? 'red.400' : borderColor}
-                spellCheck={false}
+                height="520px"
+                theme={colorMode === 'dark' ? 'dark' : 'light'}
+                extensions={[
+                  json(),
+                  keymap.of([indentWithTab]),
+                ]}
+                onChange={handleSchemaChange}
+                indentWithTab={true}
+                basicSetup={{
+                  lineNumbers: true,
+                  foldGutter: true,
+                  bracketMatching: true,
+                  autocompletion: true,
+                  history: true,
+                }}
               />
 
               {parseError && (
@@ -303,6 +311,9 @@ export function Playground() {
             <Box p={{ base: 4, md: 6 }}>
               <FormBuilder
                 schema={schema}
+                readOnly={selectedExample?.readOnly}
+                onlyDirty={selectedExample?.onlyDirty}
+                onFill={selectedExample?.onFill}
                 onSubmit={(data) => setSubmittedData(data)}
               />
             </Box>
